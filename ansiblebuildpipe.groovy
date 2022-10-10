@@ -1,6 +1,6 @@
 //Declarative pipeline
 
-pipeline {
+pipeline {  
     agent any
     parameters { 
                   string(name: 'MYSOURCE_BRANCH', defaultValue: 'master', description: '')
@@ -37,4 +37,5 @@ pipeline {
             }
         }
           
+    }
 }
