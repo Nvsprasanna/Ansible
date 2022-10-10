@@ -1,0 +1,13 @@
+---
+- name : Ping moduel
+  become : true
+  hosts: tomcat
+  tasks: 
+    - name: ping task
+      ping:
+    - name: Print date
+      shell: date
+      register: output
+    - name: printing date output
+      debug: 
+        var: output.stdout_lines

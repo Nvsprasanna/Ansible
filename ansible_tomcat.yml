@@ -1,0 +1,20 @@
+---
+- name: tomcat install
+  hosts: tomcat
+  become: true
+  tasks: 
+  - name: Copy tomact script
+    copy:  
+      src: tomcat.sh
+      dest: /tmp/tomcat.sh
+      mode: '0777'
+  - name: Execute tomcat script
+    shell: bash /tmp/tomcat.sh 
+  - name: verify tomact install
+    debug:
+     var: ansible_facts.services.tomcat
+  - name: Remove tomact script
+    file:
+      path: /tmp/tomcat.sh
+      state: absent
+  

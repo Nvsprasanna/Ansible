@@ -1,0 +1,13 @@
+---
+- name: remove git and maven
+  hosts: all
+  become: true
+  tasks:
+    - name: Remove Maven
+      yum:
+        name: mavn
+        state: absent  
+    - name: Remove git
+      yum: 
+         name: git
+         state: absent

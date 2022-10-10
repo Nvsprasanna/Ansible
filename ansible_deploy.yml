@@ -1,0 +1,21 @@
+---
+- name: tomcat deployment
+  hosts: local
+  become: true
+  tasks: 
+  - name: Copy from S3 to Local
+    aws_s3:
+      bucket: nvsbucket
+      object: /firstpipeline/master/12/hello-12.war
+      dest: /tmp/hello-12.war
+      mode: get
+
+- name: copy from local to remote
+  hosts: tomcat
+  become: true
+  tasks: 
+   - name: Copy from Local to remote
+     copy:  
+       src: /tmp/hello-12.war
+       dest: /var/lib/tomcat/webapps/hello-12.war
+       mode: '0600'

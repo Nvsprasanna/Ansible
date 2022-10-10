@@ -1,0 +1,10 @@
+---
+- name: ping module playbook
+  hosts: all
+  become: true
+  tasks:
+   - name: maven install 
+     yum:
+       name: maven
+       state: present    
+
