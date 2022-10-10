@@ -32,10 +32,10 @@ pipeline {
         }
         stage('Artifcat check') {
             steps {
-                echo 'we are in  statge'
+                echo 'we are artifact statge'
                 sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$MYSOURCE_BRANCH/$BUILD_NUMBER/ '''
             }
         }
-          
+   
     }
 }
