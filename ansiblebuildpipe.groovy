@@ -36,6 +36,15 @@ pipeline {
                 sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$MYSOURCE_BRANCH/$BUILD_NUMBER/ '''
             }
         }
-   
+   stage('Starting Deploymnet job') {
+                steps {
+    build job: 'ansibledeploy', parameters: [[$class: 'StringParameterValue', name: 'MYJOB_NAME', value: "${JOB_NAME}"],
+                                              [$class: 'StringParameterValue', name: 'MYSOURCE_BRANCH', value: "${MYSOURCE_BRANCH}"],
+                                              [$class: 'StringParameterValue', name: 'MYBUILD_NUMBER', value: "${BUILD_NUMBER}"]
+                                            
+                                              ]
+                       }
+                                   }
     }
+    
 }
